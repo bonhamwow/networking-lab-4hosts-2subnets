@@ -1,6 +1,6 @@
 # networking-lab-4hosts-2subnets
 ## Obective:
-In this lab, I build and configure a network topology consisting of **4 hosts divided equally across 2 distinct subnets**, connected via a router (or layer 3 device).
+In this lab, I build and configure a network topology consisting of **4 hosts divided equally across 2 distinct subnets**, connected via a router (or layer 3 device), which meets the following specification:
 ```mermaid
 graph TD
     subgraph SubnetA["Subnet A: 192.168.10.0/24"]
@@ -36,4 +36,25 @@ graph TD
     class SwitchA,SwitchB switch;
     class Router router;
 ```
+## Requirements to Demo this Lab
+This lab was created inside Containerlabs and is meant to be run within Linux or WSL. The YAML file is available from the repository.
 
+# Running the Lab
+## Deploying the Lab
+Open Containerlabs and navigate to the downloaded YAML file, then run the following command:
+```
+sudo containerlab deploy -t topology.clab.yml
+```
+## Test Cross-Subnet Pings
+To test pings across subnets and conform their connectivity, run any of the following commands:
+```
+docker exec -it clab-multi-subnet-lab-host-a1 ping -c 4 192.168.20.2
+docker exec -it clab-multi-subnet-lab-host-a2 ping -c 4 192.168.20.2
+docker exec -it clab-multi-subnet-lab-host-b1 ping -c 4 192.168.10.2
+docker exec -it clab-multi-subnet-lab-host-b2 ping -c 4 192.168.10.2
+```
+## Destroying the Lab
+Once you've finished with the lab, run the following command to destroy and clean-up:
+```
+sudo containerlab destroy -t topology.clab.yml
+```

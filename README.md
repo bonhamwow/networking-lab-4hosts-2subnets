@@ -1,51 +1,6 @@
 # networking-lab-4hosts-2subnets
 ## Obective:
 In this lab, I build and configure a network topology consisting of **4 hosts divided equally across 2 distinct subnets**, connected via a router (or layer 3 device).
-```
-+---------------------+		+---------------------+
-|       host-a1       |		|       host-a2       |
-| IP: 192.168.10.2/24 |		| IP: 192.168.10.3/24 |
-|   GW: 192.168.10.1  |		|   GW: 192.168.10.1  |
-+---------------------+		+---------------------+
-	   |				   |	
-      eth1<->eth1		      eth1<->eth2
-	   |_______________________________|
-			   |
-			   |
-		   +---------------+
-		   |    switch-a   |
-                   | Linux Bridge: |
-                   |      br0	   |
-                   +---------------+
-			   |
-		      eth3<->eth1
-			   |
-	      +--------------------------+
-	      |          router          |
-	      | FRRouting / Linux Router |
-              |   eth1: 192.168.10.1/24  |
-              |   eth2: 192.168.20.1/24  |
-              +--------------------------+
-			   |
-		      eth2<->eth3
-			   |
-		   +---------------+
-		   |    switch-b   |
-                   | Linux Bridge: |
-                   |      br0	   |
-                   +---------------+
-			   |
-	    _______________|_______________
-	   |				   |	
-      eth1<->eth1		      eth1<->eth2
-	   |				   |
-+---------------------+		+---------------------+
-|       host-b1       |		|       host-b2       |
-| IP: 192.168.20.2/24 |		| IP: 192.168.20.3/24 |
-|   GW: 192.168.20.1  |		|   GW: 192.168.20.1  |
-+---------------------+		+---------------------+
-	   
-```
 ```mermaid
 graph TD
     subgraph SubnetA["Subnet A: 192.168.10.0/24"]
